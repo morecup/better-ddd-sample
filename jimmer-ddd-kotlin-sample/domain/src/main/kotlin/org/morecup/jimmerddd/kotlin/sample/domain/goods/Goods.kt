@@ -1,9 +1,11 @@
 package org.morecup.jimmerddd.kotlin.sample.domain.goods
 
 import org.babyfish.jimmer.sql.Entity
+import org.morecup.jimmerddd.core.event.EventHandler
 import org.morecup.jimmerddd.core.event.publishEvent
 import org.morecup.jimmerddd.kotlin.aggregateproxy.KAggregateProxy
 import org.morecup.jimmerddd.kotlin.sample.domain.base.BaseEntity
+import org.morecup.jimmerddd.kotlin.sample.domain.base.DomainEvent
 
 @Entity
 interface Goods : BaseEntity {
@@ -11,9 +13,19 @@ interface Goods : BaseEntity {
     val nowAddress: String
 }
 val goodsAggregateProxy = KAggregateProxy(GoodsDraft::class)
-class GoodsImpl(val goods: GoodsDraft) : GoodsDraft by goods {
+
+/**
+ * 委派EventHandler，这样才能发送延迟事件和空draftContext
+ */
+class GoodsImpl(goods: GoodsDraft) : GoodsDraft by goods, EventHandler by goods as EventHandler {
     fun rename(newName: String) {
-        goods.publishEvent(1)
+        lazyPublishEvent(GoodsRenameEvent(this, id, newName))
         this.name = newName
     }
 }
+
+class GoodsRenameEvent(
+    source: Any,
+    id: Long,
+    val newName: String
+) : DomainEvent(source)

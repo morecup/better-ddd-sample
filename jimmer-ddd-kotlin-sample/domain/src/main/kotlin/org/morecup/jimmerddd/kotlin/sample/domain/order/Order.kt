@@ -2,28 +2,25 @@ package org.morecup.jimmerddd.kotlin.sample.domain.order
 
 import org.babyfish.jimmer.Formula
 import org.babyfish.jimmer.sql.*
-import org.morecup.jimmerddd.core.aggregateproxy.nullDraftContext
 import org.morecup.jimmerddd.core.annotation.AggregatedField
 import org.morecup.jimmerddd.core.annotation.AggregationType
 import org.morecup.jimmerddd.core.event.EventHandler
 import org.morecup.jimmerddd.kotlin.aggregateproxy.KAggregateProxy
 import org.morecup.jimmerddd.kotlin.sample.domain.base.BaseEntity
 import org.morecup.jimmerddd.kotlin.sample.domain.base.DomainEvent
-import org.morecup.jimmerddd.kotlin.sample.domain.base.DomainRegistry
+import org.morecup.jimmerddd.kotlin.sample.domain.base.goodsFactory
 import org.morecup.jimmerddd.kotlin.sample.domain.goods.Goods
-import org.morecup.jimmerddd.core.annotation.Lazy
 import org.morecup.jimmerddd.kotlin.sample.domain.goods.dto.CreateGoodsCmd
-
-const val testOrderId = 1921171871529832448
+import org.morecup.jimmerddd.kotlin.sample.domain.user.User
 
 @Entity
 @Table(name = "`order`")
 interface Order : BaseEntity {
 
-    @Lazy
     val name: String
 
     @ManyToOne
+    @AggregatedField(AggregationType.ID_ONLY)
     val user: User
 
     @ManyToMany
@@ -40,7 +37,6 @@ interface Order : BaseEntity {
     val payment: Payment?
 
     @OneToMany(mappedBy = "order")
-    @Lazy
     val aftermarketList: List<Aftermarket>
 
     @Transient
@@ -54,11 +50,10 @@ interface Order : BaseEntity {
     val orderDetail: OrderDetail
 
     @OneToOne
-    @AggregatedField(type = AggregationType.ID_ONLY)
+    @AggregatedField(AggregationType.ID_ONLY)
     val goods: Goods?
 
     @IdView
-//    @Transient
     val goodsId: Long?
 }
 
@@ -114,7 +109,7 @@ class OrderImpl(order: OrderDraft) : OrderDraft by order, EventHandler by order 
     }
 
     fun sendGoods():Boolean {
-        val goods: Goods = DomainRegistry.goodsFactory().createAndSave(CreateGoodsCmd("test", "某个地址"))
+        val goods: Goods = goodsFactory().createAndSave(CreateGoodsCmd("test", "某个地址"))
         return true
     }
 

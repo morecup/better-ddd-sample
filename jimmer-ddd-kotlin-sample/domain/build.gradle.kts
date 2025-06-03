@@ -9,12 +9,6 @@ plugins {
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-//repositories {
-//    mavenLocal()
-//    mavenCentral()
-////    maven ("https://maven.aliyun.com/repository/public")
-//}
-
 
 dependencies {
     implementation(libs.jimmer.sql.kotlin)

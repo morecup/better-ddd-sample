@@ -10,10 +10,9 @@ class RenameGoodsNameWhenOrderRename(
 ) {
     @EventListener
     fun onEvent(event: RenameEvent) {
-        val goods: Goods = goodsRepository.findByIdOrErr(event.goodsId)
-        goodsAggregateProxy.exec(goods) { draft ->
+        val goods: Goods = goodsRepository.findByIdOrErr(event.goodsId,GoodsImpl::rename)
+        goodsAggregateProxy.execAndSave(goods) { draft ->
             GoodsImpl(draft).rename(event.newName)
         }
-        goodsRepository.saveGoods(goods)
     }
 }
