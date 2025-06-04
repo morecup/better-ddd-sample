@@ -20,6 +20,7 @@ interface Order : BaseEntity {
     val name: String
 
     @ManyToOne
+    //声明只有id是聚合根的属性，其他属性都不参与聚合根，这里的关联只是为了查询的方便
     @AggregatedField(AggregationType.ID_ONLY)
     val user: User
 
@@ -29,8 +30,8 @@ interface Order : BaseEntity {
     @ManyToMany(mappedBy = "orderList")
     val giftList:List<Gift>
 
-    @IdView("giftList")
-    val giftListIds:List<Long>
+//    @IdView("giftList")
+//    val giftListIds:List<Long>
 
     // 一对一：订单与支付单（mappedBy 指向 Payment.order）
     @OneToOne(mappedBy = "order")
@@ -39,9 +40,11 @@ interface Order : BaseEntity {
     @OneToMany(mappedBy = "order")
     val aftermarketList: List<Aftermarket>
 
+//    Transient属性自动不是聚合根的一部分
     @Transient
     val aftermarketNOSave: Boolean
 
+//    Formula属性自动不是聚合根的一部分
     @Formula(dependencies = ["aftermarketList"])
     val aftermarketCount: Int
         get() = aftermarketList.size
@@ -50,6 +53,7 @@ interface Order : BaseEntity {
     val orderDetail: OrderDetail
 
     @OneToOne
+    //声明只有id是聚合根的属性，其他属性都不参与聚合根，这里的关联只是为了查询的方便
     @AggregatedField(AggregationType.ID_ONLY)
     val goods: Goods?
 
@@ -59,6 +63,9 @@ interface Order : BaseEntity {
 
 val orderAggregateProxy = KAggregateProxy(OrderDraft::class)
 
+/**
+ * 这里主要演示聚合根关联的实体的任意修改也能追踪，并且能够避免各种DraftContext问题，达到真正的充血模型
+ */
 class OrderImpl(order: OrderDraft) : OrderDraft by order, EventHandler by order as EventHandler {
 
     fun removeAftermarket(reason: String):Boolean {
@@ -74,7 +81,6 @@ class OrderImpl(order: OrderDraft) : OrderDraft by order, EventHandler by order 
 
     fun renameOrderName(newName: String):Boolean {
         name = newName
-//        goodsId?.let { RenameEvent(this,newName, it).publish() }
         return true
     }
 
@@ -86,30 +92,17 @@ class OrderImpl(order: OrderDraft) : OrderDraft by order, EventHandler by order 
     }
 
     fun addAftermarket(reason: String):Boolean {
-//            val aftermarket: Aftermarket = Aftermarket { this.reason = reason }
-//            val list = aftermarketList()
-//            list.addBy(aftermarket)
-//            println(list)
-        val list = aftermarketList()
-        list.addBy {
+        aftermarketList().addBy {
             this.reason = reason
         }
-        println(aftermarketList())
-//        aftermarketList = aftermarketList + Aftermarket { this.reason = reason }
-//        aftermarketList().addBy(Aftermarket { this.reason = reason })
-//        val draft: AftermarketDraft = AftermarketDraft.`$`.type.draftFactory.apply(DraftContext(null), null) as AftermarketDraft
-//        draft.reason = reason
-//        aftermarketList().add(draft)
-        return true
-    }
-
-    fun doSomethingToName():Boolean {
-        println(name)
         return true
     }
 
     fun sendGoods():Boolean {
-        val goods: Goods = goodsFactory().createAndSave(CreateGoodsCmd("test", "某个地址"))
+        /**
+         * 这里演示了调用别的聚合的Factory也不会存在draftContext的问题
+         */
+        goodsFactory().createAndSave(CreateGoodsCmd("test", "某个地址"))
         return true
     }
 

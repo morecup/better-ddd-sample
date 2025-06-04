@@ -17,8 +17,6 @@ dependencies {
 
     implementation(project(":domain"))
 
-    implementation(libs.jimmer.spring.boot.starter)
-
     ksp(libs.jimmer.ksp)
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -46,7 +44,9 @@ dependencies {
 
     testImplementation(libs.spring.boot.starter.test)
 
-    implementation("io.github.morecup.better-ddd:Jimmer-ddd-kotlin-spring-boot-starter:0.1.2")
+    implementation(libs.jimmer.spring.boot.starter)
+//    必须引入jimmer-spring-boot-starter的依赖，因为Jimmer-ddd-kotlin-spring-boot-starter对jimmer的依赖是编译期的，这样的好处是可以使用自己魔改的jimmer
+    implementation("io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter:0.1.2")
 }
 
 configurations.all {

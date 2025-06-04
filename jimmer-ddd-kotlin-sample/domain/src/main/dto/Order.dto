@@ -2,7 +2,28 @@
 export org.morecup.jimmerddd.kotlin.sample.domain.order.Order
     -> package org.morecup.jimmerddd.kotlin.sample.domain.order.dto
 
+/**
+ * dto简化了类的声明和转化实体的高额成本
+ */
 input CreateOrderCmd {
-    #allScalars(this)
+    name
+    id(user)
+    productList {
+        name
+        originalPrice
+    }
+    giftList {
+        giftName
+    }
+    payment {
+        amount
+        paymentMethod
+    }
+    aftermarketList{
+        reason
+    }
+    orderDetail{
+        address
+    }
 }
 

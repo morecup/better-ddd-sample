@@ -1,5 +1,7 @@
 package org.morecup.jimmerddd.kotlin.sample.domain.order
 
+import kotlin.reflect.KFunction
+
 interface OrderRepository {
     /**
      * 持久化Order
@@ -11,5 +13,5 @@ interface OrderRepository {
      * 查找并校验存在性
      * @param id 实体标识符
      */
-    fun findByIdOrErr(id: Long): Order
+    fun findByIdOrErr(id: Long,function: KFunction<*>?=null): Order
 }

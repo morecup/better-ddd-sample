@@ -18,10 +18,12 @@ open class GoodsRepositoryImpl(
 ) : AbstractKotlinRepository<Goods, Long>(sql), GoodsRepository {
 
     override fun saveGoods(goods: Goods): Goods {
+//        注意，如果需要保存聚合根，建议使用saveAggregate方法，而不是jimmer自带的save方法
         return saveAggregate(goods).modifiedEntity
     }
 
     override fun findByIdOrErr(id: Long,function: KFunction<*>?): Goods {
+//        能够根据提供的函数，自动分析需要查找哪些字段，如果function为null，则查找所有聚合字段（如何判断聚合字段可查看AggregatedField注解说明）
         return findById(id,function) ?: throw DomainException("找不到该Goods，id: $id")
     }
 

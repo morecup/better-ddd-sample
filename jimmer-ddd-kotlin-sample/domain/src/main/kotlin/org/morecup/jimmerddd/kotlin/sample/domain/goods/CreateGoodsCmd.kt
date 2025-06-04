@@ -2,9 +2,9 @@ package org.morecup.jimmerddd.kotlin.sample.domain.goods
 
 import org.morecup.jimmerddd.core.event.EventManager
 import org.morecup.jimmerddd.kotlin.sample.domain.goods.dto.CreateGoodsCmd
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class CreateGoodsCmdHandle(
     private val goodsRepository: GoodsRepository,
     private val goodsFactory: GoodsFactory,

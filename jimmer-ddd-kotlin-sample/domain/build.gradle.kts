@@ -11,7 +11,6 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
 dependencies {
-    implementation(libs.jimmer.sql.kotlin)
     ksp(libs.jimmer.ksp)
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -20,8 +19,8 @@ dependencies {
     implementation(libs.swagger.annotations)
     implementation(libs.spring.tx)
     implementation("org.slf4j:slf4j-api:1.7.36")
-
-    implementation("io.github.morecup.better-ddd:Jimmer-ddd-kotlin-spring-boot-starter:0.1.2")
+    implementation(libs.jimmer.sql.kotlin)
+    implementation("io.github.morecup.better-ddd:jimmer-ddd-kotlin:0.1.2")
 }
 
 // Without this configuration, gradle command can still run.

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @EnableImplicitApi
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["org.morecup.jimmerddd.kotlin.sample"])
 class App {
 }
 

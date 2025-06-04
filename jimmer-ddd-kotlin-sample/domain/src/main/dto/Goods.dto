@@ -5,3 +5,7 @@ input CreateGoodsCmd {
     #allScalars(this)
 }
 
+ChangeAddressGoodsCmd {
+    id
+    nowAddress
+}
