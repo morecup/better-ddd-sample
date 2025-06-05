@@ -23,7 +23,7 @@ commons-io = { module = "commons-io:commons-io", version = "2.16.1" }
 commons-compress = { module = "org.apache.commons:commons-compress", version = "1.19" }
 commons-text = { module = "org.apache.commons:commons-text", version = "1.10.0" }
 jimmer-ddd-kotlin = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin", version.ref = "jimmerDDDVersion" }
-jimmer-ddd-spring-boot-starter = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter", version.ref = "jimmerDDDVersion" }
+jimmer-ddd-kotlin-spring-boot-starter = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter", version.ref = "jimmerDDDVersion" }
 slf4j-api = {module = "org.slf4j:slf4j-api", version = "1.7.36"}
 mysql-connector-java = {module = "mysql:mysql-connector-java", version = "8.0.33"}
 

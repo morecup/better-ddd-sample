@@ -37,7 +37,7 @@ dependencies {
 
     implementation(libs.jimmer.spring.boot.starter)
 //    必须引入jimmer-spring-boot-starter的依赖，因为Jimmer-ddd-kotlin-spring-boot-starter对jimmer的依赖是编译期的，这样的好处是可以使用自己魔改的jimmer
-    implementation(libs.jimmer.ddd.spring.boot.starter)
+    implementation(libs.jimmer.ddd.kotlin.spring.boot.starter)
 }
 
 configurations.all {

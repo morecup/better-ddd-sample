@@ -1,4 +1,4 @@
-group = "org.morecup.better-ddd.sample"
+group = "org.morecup.better-ddd.kotlin.sample"
 version = "0.0.1"
 
 plugins {
