@@ -4,6 +4,7 @@
 
 [versions]
 jimmerVersion = "0.2.0-0.9.81"
+jimmerDDDVersion = "0.1.2"
 springBootVersion = "2.7.18"
 
 [libraries]
@@ -18,12 +19,12 @@ knife4j-openapi3-spring-boot-starter = { module = "com.github.xiaoymin:knife4j-o
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.12" }
 swagger-annotations = { module = "io.swagger.core.v3:swagger-annotations", version = "2.2.9" }
 hutool-all = { module = "cn.hutool:hutool-all", version = "5.8.22" }
-okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.12.0" }
-gdal = { module = "org.gdal:gdal", version = "3.7.1" }
-jts-core = { module = "org.locationtech.jts:jts-core", version = "1.19.0" }
 commons-io = { module = "commons-io:commons-io", version = "2.16.1" }
 commons-compress = { module = "org.apache.commons:commons-compress", version = "1.19" }
 commons-text = { module = "org.apache.commons:commons-text", version = "1.10.0" }
+jimmer-ddd-kotlin = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin", version.ref = "jimmerDDDVersion" }
+jimmer-ddd-spring-boot-starter = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter", version.ref = "jimmerDDDVersion" }
+slf4j-api = {module = "org.slf4j:slf4j-api", version = "1.7.36"}
+mysql-connector-java = {module = "mysql:mysql-connector-java", version = "8.0.34"}
 
 [plugins]
-#kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -26,27 +26,18 @@ dependencies {
     implementation(libs.knife4j.openapi3.spring.boot.starter)
     implementation(libs.swagger.parser)
     implementation(libs.hutool.all)
-    implementation(libs.okhttp)
-    implementation(libs.gdal)
-    implementation(libs.jts.core)
     implementation(libs.commons.io)
     implementation(libs.commons.compress)
     implementation(libs.commons.text)
-    implementation("net.coobird:thumbnailator:0.4.14")
-    implementation("com.twelvemonkeys.imageio:imageio-tiff:3.9.4")
-    implementation("com.twelvemonkeys.imageio:imageio-core:3.9.4")
-    implementation("com.github.ben-manes.caffeine:caffeine:2.9.3")
     implementation(libs.hutool.all)
 
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.9")
-
-    runtimeOnly("mysql:mysql-connector-java:8.0.30")
+    runtimeOnly(libs.mysql.connector.java)
 
     testImplementation(libs.spring.boot.starter.test)
 
     implementation(libs.jimmer.spring.boot.starter)
 //    必须引入jimmer-spring-boot-starter的依赖，因为Jimmer-ddd-kotlin-spring-boot-starter对jimmer的依赖是编译期的，这样的好处是可以使用自己魔改的jimmer
-    implementation("io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter:0.1.2")
+    implementation(libs.jimmer.ddd.spring.boot.starter)
 }
 
 configurations.all {

@@ -18,9 +18,9 @@ dependencies {
     implementation(libs.spring.context)
     implementation(libs.swagger.annotations)
     implementation(libs.spring.tx)
-    implementation("org.slf4j:slf4j-api:1.7.36")
+    implementation(libs.slf4j.api)
     implementation(libs.jimmer.sql.kotlin)
-    implementation("io.github.morecup.better-ddd:jimmer-ddd-kotlin:0.1.2")
+    implementation(libs.jimmer.ddd.kotlin)
 }
 
 // Without this configuration, gradle command can still run.
