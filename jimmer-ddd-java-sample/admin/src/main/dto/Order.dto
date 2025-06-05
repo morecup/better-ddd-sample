@@ -1,0 +1,21 @@
+
+export org.morecup.jimmerddd.kotlin.sample.domain.order.Order
+    -> package org.morecup.jimmerddd.kotlin.sample.domain.order.dto
+
+specification ListOrderRequest {
+    name
+}
+
+ListOrderResponse{
+    name
+    goods {
+        name
+        nowAddress
+    }
+    flat(user) {
+        name as userName
+    }
+    giftList {
+        giftName
+    }
+}
