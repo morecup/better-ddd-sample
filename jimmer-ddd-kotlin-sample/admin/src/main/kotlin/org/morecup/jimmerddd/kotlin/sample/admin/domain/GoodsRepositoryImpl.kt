@@ -33,7 +33,7 @@ open class GoodsRepositoryImpl(
     /**
      * 假设除了function外还需要增加一些其他东西
      */
-    fun findByIdOrErr(id: Long,function: KFunction<*>): Goods {
+    fun findNameByIdOrErr(id: Long,function: KFunction<*>): Goods {
         val result = sql.findById(newFetcher(Goods::class).by(analysisFunctionFetcher(Goods::class,function)){
             name()
         }, id)?: throw DomainException("找不到该Goods，id: $id")

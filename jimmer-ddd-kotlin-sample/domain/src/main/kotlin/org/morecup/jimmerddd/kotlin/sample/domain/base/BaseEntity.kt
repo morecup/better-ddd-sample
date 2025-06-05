@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import org.babyfish.jimmer.sql.GeneratedValue
 import org.babyfish.jimmer.sql.Id
 import org.babyfish.jimmer.sql.MappedSuperclass
+import org.morecup.jimmerddd.core.sqlclient.AggregationEntity
 import java.time.LocalDateTime
 
 /*
  * see CommonEntityDraftInterceptor
  */
 @MappedSuperclass
-interface BaseEntity {
+interface BaseEntity: AggregationEntity {
 
     @Id
     @GeneratedValue(generatorType = SnowflakeIdGenerator::class)
