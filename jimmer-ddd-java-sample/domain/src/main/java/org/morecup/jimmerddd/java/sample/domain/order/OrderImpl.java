@@ -50,14 +50,14 @@ public interface OrderImpl extends OrderDraft,EventHandler {
     }
 
     default void renameUserDetailMsg() {
-        System.out.println(user().getUserDetail().createTime());
+        System.out.println(user().userDetail().createTime());
         giftList(false).forEach(t -> {
             System.out.println(t.createTime());
             if (!t.giftName().isEmpty()) {
                 t.setGiftName("新的名称");
             }
         });
-        user().getUserDetail().setMsg("test");
+        user().userDetail().setMsg("test");
     }
 
     default void seeIdView() {

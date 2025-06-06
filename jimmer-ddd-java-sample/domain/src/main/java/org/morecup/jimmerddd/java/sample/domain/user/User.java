@@ -3,8 +3,6 @@ package org.morecup.jimmerddd.java.sample.domain.user;
 import org.babyfish.jimmer.sql.Entity;
 import org.babyfish.jimmer.sql.OneToMany;
 import org.babyfish.jimmer.sql.OneToOne;
-import org.morecup.jimmerddd.core.annotation.AggregatedField;
-import org.morecup.jimmerddd.core.annotation.AggregationType;
 import org.morecup.jimmerddd.java.sample.domain.base.BaseEntity;
 import org.morecup.jimmerddd.java.sample.domain.order.Order;
 
@@ -18,10 +16,10 @@ public interface User extends BaseEntity {
     // 一对多：用户视角的反向关联
     @OneToMany(mappedBy = "user")
 //    @AggregatedField(AggregationType.NON_AGGREGATED)
-    List<Order> getOrders();
+    List<Order> orders();
 
     @OneToOne
-    UserDetail getUserDetail();
+    UserDetail userDetail();
 }
 
 

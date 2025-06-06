@@ -5,5 +5,5 @@ import org.morecup.jimmerddd.java.sample.domain.base.BaseEntity;
 
 @Entity
 public interface UserDetail extends BaseEntity {
-    String getMsg();
+    String msg();
 }

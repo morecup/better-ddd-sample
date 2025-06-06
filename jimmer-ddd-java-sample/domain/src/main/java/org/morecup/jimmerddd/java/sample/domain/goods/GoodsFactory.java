@@ -1,9 +1,9 @@
 package org.morecup.jimmerddd.java.sample.domain.goods;
 
+import org.morecup.jimmerddd.java.factory.FactoryEventHandler;
+import org.morecup.jimmerddd.java.factory.WithFactoryContext;
 import org.morecup.jimmerddd.java.sample.domain.Immutables;
 import org.morecup.jimmerddd.java.sample.domain.goods.dto.CreateGoodsCmd;
-import org.morecup.jimmerddd.java.spring.factory.FactoryEventHandler;
-import org.morecup.jimmerddd.java.spring.factory.WithFactoryContext;
 import org.springframework.stereotype.Service;
 
 import static org.morecup.jimmerddd.java.sample.domain.base.SpringContextUtils.snowflakeManager;

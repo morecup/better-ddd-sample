@@ -1,6 +1,5 @@
 package org.morecup.jimmerddd.java.sample.domain.goods;
 
-import org.morecup.jimmerddd.core.event.EventManager;
 import org.morecup.jimmerddd.java.sample.domain.goods.dto.CreateGoodsCmd;
 import org.springframework.stereotype.Component;
 

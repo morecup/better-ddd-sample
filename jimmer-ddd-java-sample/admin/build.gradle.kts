@@ -19,7 +19,6 @@ dependencies {
     implementation(libs.commons.io)
     implementation(libs.commons.compress)
     implementation(libs.commons.text)
-    implementation(libs.hutool.all)
 
     runtimeOnly(libs.mysql.connector.java)
 
