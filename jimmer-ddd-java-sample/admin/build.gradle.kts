@@ -9,7 +9,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
 dependencies {
-
+    annotationProcessor(libs.jimmer.apt)
     implementation(project(":domain"))
 
     implementation(libs.spring.boot.starter.web)
@@ -37,7 +37,9 @@ configurations.all {
     }
 }
 
-
+tasks.withType<JavaCompile> {
+    options.compilerArgs.add("-Ajimmer.client.ignoreJdkWarning=true") // 可选：忽略警告
+}
 
 sourceSets{
     main{

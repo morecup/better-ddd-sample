@@ -1,6 +1,6 @@
 
-export org.morecup.jimmerddd.kotlin.sample.domain.order.Order
-    -> package org.morecup.jimmerddd.kotlin.sample.domain.order.dto
+export org.morecup.jimmerddd.java.sample.domain.order.Order
+    -> package org.morecup.jimmerddd.java.sample.domain.order.dto
 
 specification ListOrderRequest {
     name

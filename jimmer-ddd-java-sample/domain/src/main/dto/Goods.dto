@@ -1,5 +1,5 @@
-export org.morecup.jimmerddd.kotlin.sample.domain.goods.Goods
-    -> package org.morecup.jimmerddd.kotlin.sample.domain.goods.dto
+export org.morecup.jimmerddd.java.sample.domain.goods.Goods
+    -> package org.morecup.jimmerddd.java.sample.domain.goods.dto
 
 input CreateGoodsCmd {
     #allScalars(this)
