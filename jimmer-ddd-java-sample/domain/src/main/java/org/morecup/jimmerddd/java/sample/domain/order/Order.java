@@ -50,10 +50,12 @@ public interface Order extends BaseEntity {
 
     @OneToOne
     @AggregatedField(type = AggregationType.ID_ONLY)
+    @Nullable
     Goods goods();
 
     @IdView("goods")
-    long goodsId();
+    @Nullable
+    Long goodsId();
 }
 
 

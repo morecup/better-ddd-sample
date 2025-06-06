@@ -35,7 +35,7 @@ public class GoodsRepositoryImpl implements GoodsRepository {
 
     public Goods findNameByIdOrErr(Long id, MethodInfo methodInfo) {
         Fetcher<Goods> goodsFetcher = FunctionFetcher.of(Goods.class, methodInfo);
-        Goods result = aggregateSqlClient.sqlClient.findById(
+        Goods result = aggregateSqlClient.getSqlClient().findById(
                 GoodsFetcher.$from(goodsFetcher).name(),
                 id
         );
@@ -47,7 +47,7 @@ public class GoodsRepositoryImpl implements GoodsRepository {
 
     public Goods findByNameOrErr(String name, MethodInfo methodInfo) {
         Fetcher<Goods> goodsFetcher = FunctionFetcher.of(Goods.class, methodInfo);
-        Goods result = aggregateSqlClient.sqlClient
+        Goods result = aggregateSqlClient.getSqlClient()
                 .createQuery(GoodsTable.$)
                 .where(GoodsTable.$.name().eq(name))
                 .select(GoodsTable.$.fetch(goodsFetcher))
