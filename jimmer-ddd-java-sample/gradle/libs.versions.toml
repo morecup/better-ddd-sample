@@ -3,7 +3,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-jimmerVersion = "0.2.0-0.9.81"
+jimmerVersion = "0.2.1-0.9.81"
 jimmerDDDVersion = "0.2.2"
 springBootVersion = "2.7.18"
 
