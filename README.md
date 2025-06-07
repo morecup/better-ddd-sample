@@ -4,4 +4,4 @@
 
 [jimmer-ddd-kotlin-sample](jimmer-ddd-kotlin-sample) 是jimmerddd的kotlin示例项目。
 
-住项目地址 [jimmer-ddd](https://github.com/morecup/jimmer-ddd)
+主项目地址 [jimmer-ddd](https://github.com/morecup/jimmer-ddd)
