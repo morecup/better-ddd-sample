@@ -2,6 +2,7 @@ package org.morecup.jimmerddd.kotlin.sample.domain.base
 
 import org.babyfish.jimmer.kt.isLoaded
 import org.babyfish.jimmer.sql.DraftPreProcessor
+import org.morecup.jimmerddd.core.aggregateproxy.isIdOnlyIgnoreAssociation
 import org.morecup.jimmerddd.core.sqlclient.checkIsInsertOrUpdate
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
@@ -21,7 +22,7 @@ class BaseEntityDraftInterceptor : DraftPreProcessor<BaseEntityDraft> {
      */
 
     override fun beforeSave(draft: BaseEntityDraft) {
-        if (!isLoaded(draft, BaseEntity::updateTime)) {
+        if (!isIdOnlyIgnoreAssociation(draft)&&!isLoaded(draft, BaseEntity::updateTime)) {
             draft.updateTime = LocalDateTime.now()
         }
         // `original === null` means `INSERT`
