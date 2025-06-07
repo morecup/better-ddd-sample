@@ -16,3 +16,4 @@ jimmer:
   database-validation-mode: ERROR
   show-sql: true
   pretty-sql: true
+  inlineSqlVariables: true

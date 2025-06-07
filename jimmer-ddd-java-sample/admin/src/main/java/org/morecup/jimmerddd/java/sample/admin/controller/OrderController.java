@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.babyfish.jimmer.sql.JSqlClient;
 import org.morecup.jimmerddd.java.sample.admin.base.R;
 import org.morecup.jimmerddd.java.sample.domain.Tables;
+import org.morecup.jimmerddd.java.sample.domain.order.ChangeAllReasonOrderCmdHandle;
 import org.morecup.jimmerddd.java.sample.domain.order.CreateOrderCmdHandle;
 import org.morecup.jimmerddd.java.sample.domain.order.Order;
 import org.morecup.jimmerddd.java.sample.domain.order.OrderTable;
@@ -14,10 +15,8 @@ import org.morecup.jimmerddd.java.sample.domain.order.dto.ListOrderResponse;
 import org.morecup.jimmerddd.java.spring.preanalysis.JAggregateSqlClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -26,10 +25,12 @@ import java.util.List;
 public class OrderController {
     
     private final CreateOrderCmdHandle createOrderCmdHandle;
+    private final ChangeAllReasonOrderCmdHandle changeAllReasonOrderCmdHandle;
     private final JSqlClient sqlClient;
 
-    public OrderController(CreateOrderCmdHandle createOrderCmdHandle, JSqlClient sqlClient) {
+    public OrderController(CreateOrderCmdHandle createOrderCmdHandle, ChangeAllReasonOrderCmdHandle changeAllReasonOrderCmdHandle, JSqlClient sqlClient) {
         this.createOrderCmdHandle = createOrderCmdHandle;
+        this.changeAllReasonOrderCmdHandle = changeAllReasonOrderCmdHandle;
         this.sqlClient = sqlClient;
     }
 
@@ -52,5 +53,12 @@ public class OrderController {
                 .select(orderTable.fetch(ListOrderResponse.class))
                 .execute();
         return R.success(listOrderResponse);
+    }
+
+    @PostMapping("/changeAllReason")
+    @Transactional
+    @Operation(summary = "changeAllReason")
+    public R<Boolean> changeAllReason(@RequestParam long id) {
+        return R.success(changeAllReasonOrderCmdHandle.handle(id));
     }
 }

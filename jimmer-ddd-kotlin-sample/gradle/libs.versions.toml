@@ -4,7 +4,7 @@
 
 [versions]
 jimmerVersion = "0.2.0-0.9.81"
-jimmerDDDVersion = "0.1.2"
+jimmerDDDVersion = "0.2.2"
 springBootVersion = "2.7.18"
 
 [libraries]
@@ -22,8 +22,8 @@ hutool-all = { module = "cn.hutool:hutool-all", version = "5.8.22" }
 commons-io = { module = "commons-io:commons-io", version = "2.16.1" }
 commons-compress = { module = "org.apache.commons:commons-compress", version = "1.19" }
 commons-text = { module = "org.apache.commons:commons-text", version = "1.10.0" }
-jimmer-ddd-kotlin = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin", version.ref = "jimmerDDDVersion" }
-jimmer-ddd-kotlin-spring-boot-starter = { module = "io.github.morecup.better-ddd:jimmer-ddd-kotlin-spring-boot-starter", version.ref = "jimmerDDDVersion" }
+jimmer-ddd-kotlin = { module = "io.github.morecup.jimmer-ddd:jimmer-ddd-kotlin", version.ref = "jimmerDDDVersion" }
+jimmer-ddd-kotlin-spring-boot-starter = { module = "io.github.morecup.jimmer-ddd:jimmer-ddd-kotlin-spring-boot-starter", version.ref = "jimmerDDDVersion" }
 slf4j-api = {module = "org.slf4j:slf4j-api", version = "1.7.36"}
 mysql-connector-java = {module = "mysql:mysql-connector-java", version = "8.0.33"}
 

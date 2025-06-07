@@ -1,5 +1,6 @@
 package org.morecup.jimmerddd.java.sample.domain.order;
 
+import org.morecup.jimmerddd.core.aggregateproxy.AggregateProxy;
 import org.morecup.jimmerddd.core.event.EventHandler;
 import org.morecup.jimmerddd.java.sample.domain.goods.dto.CreateGoodsCmd;
 
@@ -11,6 +12,7 @@ import static org.morecup.jimmerddd.java.sample.domain.base.SpringContextUtils.g
  * 这里主要演示聚合根关联的实体的任意修改也能追踪，并且能够避免各种DraftContext问题，达到真正的充血模型
  */
 public interface OrderImpl extends OrderDraft,EventHandler {
+    AggregateProxy<OrderImpl> proxy = new AggregateProxy<>(OrderImpl.class);
 
     default boolean removeAftermarket(String reason) {
         List<Aftermarket> list = aftermarketList();
@@ -29,7 +31,10 @@ public interface OrderImpl extends OrderDraft,EventHandler {
     }
 
     default boolean changeAllReason(String newReason) {
-        aftermarketList(false).forEach(t -> t.setReason(newReason));
+        System.out.println(aftermarketList(false).size());
+//        aftermarketList(false).forEach(t -> t.setReason(newReason));
+        addIntoAftermarketList(draft -> draft.setReason(newReason));
+//        aftermarketList(false).getFirst().setReason(newReason);
         return true;
     }
 
